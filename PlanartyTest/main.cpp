@@ -5,8 +5,8 @@
 #include<utility>
 
 #include"checkPlanarity.hpp"
+#include"graph.hpp"
 typedef std::pair<int, int> pii;
-// typedef std::vector<std::vector<int> > Graph;
 
 int main(int argc, char *argv[]){
   if(argc != 2){
@@ -23,13 +23,12 @@ int main(int argc, char *argv[]){
   std::string tmp;
   getline(ist, tmp);
   sscanf(tmp.data(), "%d", &n);
-  Graph g(n, std::vector<int>());
+  Graph g(n);
   while(getline(ist, tmp)){
     int u, v;
     sscanf(tmp.data(), "%d %d", &u, &v);
-    g[u].push_back(v);
-    g[v].push_back(u);
+    g.AddEdge(u, v);
   }
-  std::cout << "G is" << ((checkPlanarity(g))?"planar":"not planar") << std::endl;
+  std::cout << "G is " << ((checkPlanarity(g))?"planar":"not planar") << std::endl;
   return 0;
 }
